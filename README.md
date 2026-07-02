@@ -1,4 +1,4 @@
-## "Classwork 11" - The Mandelbrot Set
+## "Classwork 11"" - The Mandelbrot Set
 This project involved the design, development, and implementation of a Python software program dedicated to computing and mapping the Mandelbrot Set within the complex plane. The system was structured under a modular and parameterized architecture, where the dimensions of the rendering matrix (ancho and alto), the maximum iteration limit (max_iter), and the coordinate boundaries of the complex plane are dynamically imported from an external configuration file (config.txt).The algorithmic core executes nested loops to traverse every spatial coordinate, applying the recursive equation $Z_{n+1} = Z_n^2 + C$. The divergence of the magnitude of $Z$ at each point is evaluated using an optimized escape criterion managed by a conditional control loop. Finally, the resulting convergence data is sequentially exported into a structured Comma-Separated Values file (mandelbrot.csv), strictly complying with the separation of the data input, mathematical processing, and output generation stages.
 
 AI Declaration:

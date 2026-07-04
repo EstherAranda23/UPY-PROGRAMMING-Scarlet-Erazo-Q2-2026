@@ -1,0 +1,126 @@
+
+PROGRAM PSEUDOCODE - CLASSWORK 11: THE MANDELBROT SET GENERATOR
+
+
+
+# STEP 1: INITIALIZATION AND CONFIGURATION READING
+
+PRINT "Reading configuration..."
+
+# Initialize blank storage map
+config ← EMPTY DICTIONARY
+
+# Open connection to setup properties text file
+OPEN "config.txt" IN READ MODE AS configuration_file
+
+# Parse structural variables loop
+FOR EACH line IN configuration_file:
+    # Clear leading or trailing blank spaces from raw input string line
+    cleaned_line ← REMOVE_WHITESPACE(line)
+    
+    # Separate data identifiers from numeric values
+    key_string, value_string ← SPLIT cleaned_line BY "=" CHARACTER
+    
+    # Cast into standard decimal mapping storage structure
+    config[key_string] ← CONVERT value_string TO FLOATING_POINT_NUMBER
+END FOR
+
+# Free file memory handle
+CLOSE configuration_file
+
+PRINT "Configuration loaded."
+
+# Extract and cast individual application control values from structural map
+width ← CONVERT config["width"] TO INTEGER
+height ← CONVERT config["height"] TO INTEGER
+max_iter ← CONVERT config["max_iter"] TO INTEGER
+real_min ← config["real_min"]
+real_max ← config["real_max"]
+imag_min ← config["imag_min"]
+imag_max ← config["imag_max"]
+
+
+# S
+PRINT "Computing Mandelbrot Set..."
+PRINT "Saving CSV..."
+
+# Establish persistent disk storage target for coordinates data matrix
+OPEN "mandelbrot.csv" IN WRITE MODE AS output_csv_file
+
+# Insert comma separated table headers line entry
+WRITE "row,column,iterations\n" TO output_csv_file
+
+
+# STEP 3: TWIN-AXIS CANVAS SCANNING MATRIX NESTED PROCESSING LOOPS
+
+# Loop rows: Loop across vertical axis dimensions matching maximum grid coordinates
+row_index ← 0
+WHILE row_index < height DO
+
+    # Loop columns: Loop across horizontal axis dimensions matching maximum grid coordinates
+    column_index ← 0
+    WHILE column_index < width DO
+        
+       
+        # STEP 4: MATHEMATICAL MAPPING TO COMPLEX COORD SYSTEM
+      
+        # Extrapolate relative fraction position within limits boundary
+        real_ratio ← column_index / (width - 1)
+        imag_ratio ← row_index / (height - 1)
+        
+        # Compute exact position offsets along spatial limits axes
+        current_real ← real_min + real_ratio * (real_max - real_min)
+        current_imag ← imag_max - imag_ratio * (imag_max - imag_min)
+        
+        # Combine independent plane positions into single complex object
+        c ← CREATE_COMPLEX_NUMBER(current_real, current_imag)
+        
+        
+        # STEP 5: ESCAPE DYNAMICS ITERATION ENGINE
+     
+        # Count iterations: Set tracking registers back to baseline origins
+        z ← CREATE_COMPLEX_NUMBER(0.0, 0.0)
+        iteration_counter ← 0
+        
+        # Loop escape validation checks until bounds thresholds trigger
+        WHILE ABSOLUTE_VALUE(z) <= 2.0 AND iteration_counter < max_iter DO
+            # Perform Mandelbrot escape verification equation
+            z ← (z * z) + c
+            
+            # Record execution pass completion progress metrics count
+            iteration_counter ← iteration_counter + 1
+        END WHILE
+        
+        
+        # STEP 6: STRING FORMATTING AND RECORD EXPORT PIPELINE
+       
+        # Turn processing metrics outputs into output file strings
+        row_string ← CONVERT row_index TO STRING
+        column_string ← CONVERT column_index TO STRING
+        iter_string ← CONVERT iteration_counter TO STRING
+        
+        # Concatenate values together into single standard format CSV line output
+        comma_delimited_record ← row_string + "," + column_string + "," + iter_string + "\n"
+        
+        # Save CSV: Append raw structural metrics to the data matrix spreadsheet file
+        WRITE comma_delimited_record TO output_csv_file
+        
+        # Advance horizontal track coordinate step pointer
+        column_index ← column_index + 1
+    END WHILE
+
+    # Advance vertical track coordinate step pointer
+    row_index ← row_index + 1
+END WHILE
+
+
+# STEP 7: DE-ALLOCATION AND TERMINATION PROCEDURES
+
+# Close files: Safely disconnect external file stream reference handles
+CLOSE output_csv_file
+
+PRINT "Done!"
+PRINT "CSV file created successfully."
+
+# Finish execution state indicator
+TERMINATE PROGRAM

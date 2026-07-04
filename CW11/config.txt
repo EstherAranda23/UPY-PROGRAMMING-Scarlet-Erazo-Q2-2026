@@ -1,0 +1,7 @@
+width=512
+height=512
+real_min=-0.78
+real_max=-0.74
+imag_min=0.1
+imag_max=0.15
+max_iter=1000

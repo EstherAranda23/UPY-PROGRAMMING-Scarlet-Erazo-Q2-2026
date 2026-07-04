@@ -1,0 +1,8 @@
+import
+
+coordenadas_x = [ random.uniform(-10,10) for _ in range (100)]
+coordenadas_y =[ ramdom.uniform(-10,10) for _ in range (100)]
+
+
+file = open ("mandelbroth.csv", 'W')
+for x in coordenadas

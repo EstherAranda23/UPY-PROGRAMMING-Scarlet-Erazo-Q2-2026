@@ -1,0 +1,50 @@
+# Classwork #12 - The Mandelbrot Set Visualization
+# File: PPP.txt
+
+START
+
+    # INPUT
+    # Define image dimensions matching Classwork 11 grid size
+    width ← 800
+    height ← 600
+    max_iter ← 100
+
+    # Open the CSV file containing the computed Mandelbrot data
+    OPEN "mandelbrot.csv" FOR READING AS file
+    READ ALL LINES FROM file INTO lines
+    CLOSE file
+
+    # PROCESS & OUTPUT
+    # Extract data lines skipping the header row
+    data_lines ← lines FROM INDEX 1 TO END
+
+    # Initialize a new grayscale image using width and height
+    CREATE IMAGE WITH "L" MODE AND SIZE (width, height) AS img
+
+    FOR EACH line IN data_lines DO
+        # Clean and split the CSV row by comma
+        CLEANED line ← REMOVE WHITESPACE FROM line
+        row_tokens ← SPLIT line BY ","
+        
+        # Parse tokens into integers
+        row_index ← CONVERT row_tokens[0] TO INTEGER
+        col_index ← CONVERT row_tokens[1] TO INTEGER
+        iterations ← CONVERT row_tokens[2] TO INTEGER
+
+        # Determine brightness based on iteration count
+        IF iterations IS EQUAL TO max_iter THEN
+            # Inside the set is colored black
+            brightness ← 0
+        ELSE
+            # Scale iterations to a 0-255 range for grayscale visualization
+            brightness ← CONVERT ((iterations / max_iter) * 255) TO INTEGER
+        ENDIF
+
+        # Place pixel using column as X and row as Y coordinates
+        SET PIXEL AT (col_index, row_index) WITH VALUE brightness IN img
+    ENDFOR
+
+    # Save the final rendered image to disk
+    SAVE img AS "mandelbrot.png"
+
+END

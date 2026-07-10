@@ -1,9 +1,3 @@
-## "Classwork 11"" - The Mandelbrot Set
-This project involved the design, development, and implementation of a Python software program dedicated to computing and mapping the Mandelbrot Set within the complex plane. The system was structured under a modular and parameterized architecture, where the dimensions of the rendering matrix (ancho and alto), the maximum iteration limit (max_iter), and the coordinate boundaries of the complex plane are dynamically imported from an external configuration file (config.txt).The algorithmic core executes nested loops to traverse every spatial coordinate, applying the recursive equation $Z_{n+1} = Z_n^2 + C$. The divergence of the magnitude of $Z$ at each point is evaluated using an optimized escape criterion managed by a conditional control loop. Finally, the resulting convergence data is sequentially exported into a structured Comma-Separated Values file (mandelbrot.csv), strictly complying with the separation of the data input, mathematical processing, and output generation stages.
-
-## "Classwork 12"" - The Mandelbrot Set
-To complete my assignment on the Mandelbrot Set, I followed a structured technical process that began with configuring mathematical parameters—such as image dimensions and complex plane boundaries—using a configuration file. I then executed a script to process the iteration algorithm and store the results in a data file, which allowed me to decouple the mathematical calculations from the visualization. Subsequently, I developed and debugged a visualization script that reads these data points and maps the iterations to specific colors, successfully rendering the final PNG image after resolving pathing issues. Finally, I organized all components, including the required pseudocode and flowchart, into a folder named Classwork-12-The-Mandelbrot-Set to comply with the assignment's grading rubric.
-
-
+## "Classwork 13"
 AI Declaration:
 I, Scarlet Verenice Erazo Aranda, declare that no Artificial Intelligence tools were used in the completion of this project; the code, logic, and documentation were developed independently to meet the academic requirements of the course.

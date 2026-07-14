@@ -1,10 +1,8 @@
 # Classwork 13 - Error Handling: Numerical Integration
 
-
 import math
 
-# INPUT
-
+#INPUT
 # Get and validate left endpoint
 valid = False
 while not valid:

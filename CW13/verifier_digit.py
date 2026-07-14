@@ -1,7 +1,6 @@
-
 # Classwork 13 - Error Handling: Verifier Digit
 
-#INPUT 
+#INPUT
 valid = False
 while not valid:
     try:

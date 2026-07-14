@@ -1,6 +1,8 @@
 # Classwork 13 - Error Handling: Spanish Verb Conjugator
 
-# PROCESS: Required structures
+
+
+#PROCESS: Required structures
 
 pronombres = ['yo', 'tu', 'el', 'nosotros', 'vosotros', 'ellos']
 
@@ -11,7 +13,6 @@ terminaciones = {
 }
 
 #INPUT
-
 valid = False
 while not valid:
     try:
@@ -36,7 +37,6 @@ while not valid:
         print(f"Input error: {e} Please try again.")
 
 #PROCESS
-
 try:
     stem         = verbo[:-2]
     endings_list = terminaciones[ending]
@@ -49,7 +49,7 @@ except Exception as e:
     print(f"Processing error: {e}")
     endings_list = None
 
-#OUTPUT 
+#OUTPUT
 if endings_list is not None:
     for i in range(len(pronombres)):
         print(pronombres[i], stem + endings_list[i])
